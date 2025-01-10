@@ -23,6 +23,11 @@ const Userschema = new Schema({
             }
         }
     },
+    role: {
+        type: String,
+        enum: ["admin", "user"],
+        required: true
+    },
     fname: {
         type: String,
         required: true,
@@ -49,7 +54,7 @@ Userschema.methods.comparePassword = async function (password) {
     return ismatch
 }
 Userschema.methods.createJwt = function () {
-    return jwt.sign({ userId: this._id, username: this.username }, process.env.SECRET_PHASE, { expiresIn: process.env.EXPIRESIN })
+    return jwt.sign({ userId: this._id, username: this.username, role: this.role }, process.env.SECRET_PHASE, { expiresIn: process.env.EXPIRESIN })
 }
 
 module.exports = model("User", Userschema)
