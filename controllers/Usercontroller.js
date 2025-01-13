@@ -21,7 +21,7 @@ const login = async (req, res) => {
         signed: true,
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24)
     })
-    req.flash("success", `Welcome back ${user.username} to funding firm`)
+    req.flash("success", `Welcome back ${user.username} to fund firm`)
     res.redirect('/home/dashboard')
 }
 

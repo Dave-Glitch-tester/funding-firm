@@ -31,12 +31,10 @@ app.use(express.static(path.join(__dirname, "public")))
 app.set("views", path.join(__dirname, "views"))
 app.use(session(config))
 app.engine("ejs", ejsMate)
-app.set("view engine", ejs)
+app.set("view engine", "ejs")
 app.use(flash())
 app.use(cookieParser(process.env.COOKIESECRET))
 app.use(methodoverride("_method"))
-app.use(errorHandler)
-
 
 app.use((req, res, next) => {
     res.locals.success = req.flash("success")
@@ -48,11 +46,11 @@ app.use((req, res, next) => {
 app.use("/", userRoutes)
 app.use("/home", Auth, DashboardRoutes)
 
-
 app.get("*", (req, res) => {
     res.status(404).send(`${req.originalUrl} does not exist`)
 })
 
+app.use(errorHandler)
 
 const start = async () => {
     try {
