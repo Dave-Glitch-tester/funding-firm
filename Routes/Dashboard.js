@@ -1,11 +1,12 @@
 const express = require('express')
 const Router = new express.Router()
 const catchAsync = require('../utils/catchAsync')
-const { getSingleUser, getAllUser, updatePassword, post } = require("../controllers/DashBoardController")
+const { authorizeRoles } = require("../Middleware/Auth")
+const { getSingleUser, getAllUser, updatePassword} = require("../controllers/DashBoardController")
 
 
-Router.route('/admin').get(catchAsync(getAllUser))
-Router.route("/dashboard").get(catchAsync(getSingleUser)).patch(catchAsync(updatePassword)).post(post)
+Router.route('/admin').get(authorizeRoles(["admin"]), catchAsync(getAllUser))
+Router.route("/dashboard").get(catchAsync(getSingleUser)).patch(catchAsync(updatePassword))
 
 
 module.exports = Router

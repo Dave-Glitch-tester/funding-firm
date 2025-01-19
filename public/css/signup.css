@@ -1,0 +1,154 @@
+/* Universal Styles */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color1-: #89a8ba;
+    --color2-: #b3c8cf;
+    --color3-: #e5e1da;
+    --color4-: #f1f0e8;
+    --color5-: #06141b;
+    --color6-: #11212d;
+    --color7-: #253745;
+    --color8-: #4a5c6a;
+    --color9-: #9ba8ab;
+    --color10-: #ccd0cf;
+}
+
+body {
+    font-family: "Nunito", sans-serif;
+    background: linear-gradient(to right, var(--color3-), var(--color8-));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: var(--color5-);
+}
+
+/* Container and Heading */
+.container {
+   
+    align-content: center;
+    width: 90%;
+    max-width: 1200px;
+    background: var(--color4-);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: auto;
+}
+
+.container h1 {
+    margin-bottom: 20px;
+    color: var(--color7-);
+    font-size: 2rem;
+}
+
+/* Form Section */
+.form-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+   align-content: center;
+  
+}
+
+.formimg img {
+    max-width: 350px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Form Styling */
+form {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color9-);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--color1-);
+    box-shadow: 0 0 5px var(--color1-);
+}
+
+/* Button */
+.btn-primary {
+    background: var(--color1-);
+    color: var(--color5-);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--color2-);
+}
+
+.form-cta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-content: center;
+}
+
+/* Link Styling */
+.link {
+    color: var(--color7-);
+    font-size: 0.9rem;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: var(--color8-);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1000px) {
+
+    .form-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .formimg img {
+        display: none;
+    }
+        .container .form-section{
+            width: 90%;
+        }
+}
+
+@media screen and (max-width:500px) {
+    .container h1{
+        font-size: 1.4rem;
+    }
+
+    .btn-primary{
+        padding: 10px 10px;
+        width: 50%;
+        font-size: 0.6rem;
+    }
+    .form-cta a{
+        font-size: 0.6rem;
+        align-content: center;
+    }
+}

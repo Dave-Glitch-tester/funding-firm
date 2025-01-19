@@ -4,7 +4,6 @@ const Auth = (req, res, next) => {
     try {
         const token = req.signedCookies.authorize
         if (!token) {
-            req.flash("error", "You must be logined in")
             throw new unAuthenticatedError("Please provide token for the Route")
         }
         const verify = jwt.verify(token, process.env.SECRET_PHASE)
@@ -13,8 +12,15 @@ const Auth = (req, res, next) => {
         next()
     }
     catch (err) {
-        console.log(err)
+        next(err)
     }
 }
-
-module.exports = Auth
+const authorizeRoles = (roles) => {
+    return (req, res, next) => {
+        if (!roles.includes(req.user.role)) {
+            throw new unAuthenticatedError("You are not permitted to access this route")
+        }
+        next()
+    }
+}
+module.exports = { Auth, authorizeRoles }

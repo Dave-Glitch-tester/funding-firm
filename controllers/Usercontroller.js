@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const Userschema = require('../schema');
 const { unAuthenticatedError, BadRequest } = require('../Error');
-const { Attachcookie } = require('../utils/Attachcookie');
+
 const login = async (req, res) => {
     const { email, password } = req.body
     if (!email || !password) {
@@ -13,18 +13,21 @@ const login = async (req, res) => {
     }
     const ispasswordMatch = await user.comparePassword(password)
     if (!ispasswordMatch) {
-        throw new unAuthenticatedError("Incorrect password")
+        throw new unAuthenticatedError("Incorrect crendentials")
     }
     const token = await user.createJwt()
+    console.log(req)
+    req.flash("success", `Welcome back ${user.username} to fund firm`)
     res.cookie('authorize', token, {
         httpOnly: true,
         signed: true,
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24)
     })
-    req.flash("success", `Welcome back ${user.username} to fund firm`)
     res.redirect('/home/dashboard')
 }
-
+const renderLoginForm = (req,res)=>{
+    res.status(200).render("login")
+}
 const register = async (req, res) => {
     // const { error } = Userschema.validate(req.body)
     // error.details.map((el) => {
@@ -35,7 +38,7 @@ const register = async (req, res) => {
     const user = await User.findOne({ username })
     if (user) {
         // Refacator here to throw error
-        return res.status(500).json({ msg: "username already exist" })
+        throw new BadRequest("Username already exist")
     }
     const isFirstUser = await User.countDocuments({}) === 0;
     const role = isFirstUser ? 'admin' : 'user';
@@ -55,4 +58,4 @@ const logout = async (req, res) => {
 };
 
 
-module.exports = { login, register, logout }
+module.exports = { login, register, logout,renderLoginForm }

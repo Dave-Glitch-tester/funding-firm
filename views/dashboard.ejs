@@ -1,5 +1,88 @@
-<% layout(layout/boilerplate) %>
+<% layout("layout/boilerplate") %>
 
-    <div class="dashboard">
-        <p>Welcome <%= user.username</p>
-    </div>
+link rel="stylesheet" href="css/dashboard.css">
+
+   <header class="header" data-header>
+        <div class="container">
+            <div class="logo">
+                <a href="/index.html"><img src="images/firm2.svg" width="300" height="70" id="header"
+                        class="img-logo" alt="FUNDING FIRM LOGO"></a>
+            </div>
+            <nav class="navbar" data-navbar>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                    <img src="images/185038_home_house_icon.png" class="img-link" alt="">
+                    <ahref="/dashboard.html" class="nav-link" data-nav-link
+                            style="border-bottom: 1px solid black;">
+                            DashBoard</a></li>
+                    <li class="nav-item"><img src="images/9499384_no_deposit_lie_bribe_icon.png" class="img-link"
+                            alt=""><a href="/deposite.html" class="nav-link" data-nav-link>Deposite</a></li>
+                    <li class="nav-item"><img src="images/211635_card_icon.png" class="img-link" alt=""><a
+                            href="/withdraw.html" class="nav-link" data-nav-link>Withdrawl</a></li>
+                    <li class="nav-item"><img src="images/172475_headset_support_icon.png" class="img-link"
+                            alt=""><a href="/support.html" class="nav-link" data-nav-link>support</a></li>
+                    <li class="nav-item nav-profile"><img
+                            src="images/8324223_ui_essential_app_avatar_profile_icon.png" class="img-link"
+                            width="30" alt=""><a class="nav-link  " href="/">profile</a>
+                    </li>
+                </ul>
+                </ul>
+            </nav>
+            <div class="cta">
+                <button class="nav-toggle-btn" aria-label="Toggle menu" data-nav-toggler>
+                    <span class="line line-1" ;"></span>
+                    <span class="line line-2" ;"></span>
+                    <span class="line line-3" ;"></span>
+                </button>
+                <a href="#"><img src="images/8324223_ui_essential_app_avatar_profile_icon.png" class="nav-avatar"
+                        width="30" alt=""></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h1 id="client-name">Welcome <%= user.username %></h1>
+        <div class="container">
+
+            <div class="boards">
+                <div class="board-img">
+                    <img src="/images/9499384_no_deposit_lie_bribe_icon.png" class="img-link" alt="">
+                </div>
+                <div class="board-text">
+                    <h1>Deposit</h1>
+                    <span>$0</span>
+                </div>
+            </div>
+            <div class="boards">
+                <div class="board-img">
+                    <img src="images/3525373_bet_casino_coin_gambling_investment_icon.png" class="img-link"
+                        alt="">
+                </div>
+                <div class="board-text">
+                    <h1>Profit</h1>
+                    <span>$0</span>
+                </div>
+            </div>
+            <div class="boards">
+                <div class="board-img">
+                    <img src="images/211635_card_icon.png" class="img-link" alt="">
+                </div>
+                <div class="board-text">
+                    <h1>Withdrawl</h1>
+                    <span>0$</span>
+                </div>
+            </div>
+            <div class="boards">
+                <div class="board-img">
+                    <img src="/images/3830999_connect_connections_refer_referral_share_icon.png" class="img-link"
+                        alt="">
+                </div>
+                <div class="board-text">
+                    <h1>Ref Bouns</h1>
+                    <span>0$</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<script src="js/dashboard.js"></script>
