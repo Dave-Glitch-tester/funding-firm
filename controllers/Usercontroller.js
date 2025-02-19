@@ -13,10 +13,11 @@ const login = async (req, res) => {
     }
     const ispasswordMatch = await user.comparePassword(password)
     if (!ispasswordMatch) {
-        throw new unAuthenticatedError("Incorrect crendentials")
+        // throw new unAuthenticatedError("Incorrect crendentials")
+        req.flash("error","Incorrect Credentials")
+        return res.redirect('/login')
     }
     const token = await user.createJwt()
-    console.log(req)
     req.flash("success", `Welcome back ${user.username} to fund firm`)
     res.cookie('authorize', token, {
         httpOnly: true,
@@ -25,8 +26,11 @@ const login = async (req, res) => {
     })
     res.redirect('/home/dashboard')
 }
-const renderLoginForm = (req,res)=>{
+const renderLoginForm = (req, res) => {
     res.status(200).render("login")
+}
+const renderRegisterForm = (req, res) => {
+    res.status(200).render("register")
 }
 const register = async (req, res) => {
     // const { error } = Userschema.validate(req.body)
@@ -44,9 +48,15 @@ const register = async (req, res) => {
     const role = isFirstUser ? 'admin' : 'user';
     const newUser = await User.create({ username, password, email, fname, lname, role })
     await newUser.save()
-
+    const token = await newUser.createJwt()
     req.flash("success", "You have created an account")
-    res.send("successful")
+
+    res.cookie('authorize', token, {
+        httpOnly: true,
+        signed: true,
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24)
+    })
+    res.redirect('/home/dashboard')
 }
 
 const logout = async (req, res) => {
@@ -58,4 +68,4 @@ const logout = async (req, res) => {
 };
 
 
-module.exports = { login, register, logout,renderLoginForm }
+module.exports = { login, register, logout, renderLoginForm, renderRegisterForm }

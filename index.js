@@ -47,12 +47,6 @@ app.use((req, res, next) => {
 app.use("/", userRoutes)
 app.use("/home", Auth, DashboardRoutes)
 
-// Remove before deployment
-app.get("/user", async (req, res) => {
-    await User.deleteMany({})
-    res.send("Deleted")
-
-})
 app.get("*", (req, res) => {
     res.status(404).send(`${req.originalUrl} does not exist`)
 })

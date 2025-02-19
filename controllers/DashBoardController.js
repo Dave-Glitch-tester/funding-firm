@@ -28,8 +28,6 @@ const updatePassword = async (req, res) => {
     res.status(200).json({ msg: "updated" })
 }
 
-
-
 module.exports = {
     getAllUser,
     getSingleUser,

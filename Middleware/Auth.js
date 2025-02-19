@@ -9,6 +9,7 @@ const Auth = (req, res, next) => {
         const verify = jwt.verify(token, process.env.SECRET_PHASE)
         const { userId, username, role } = verify
         req.user = { userId, username, role }
+       
         next()
     }
     catch (err) {

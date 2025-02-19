@@ -1,6 +1,7 @@
 <% layout("layout/boilerplate") %>
 
-link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="/css/dashboard.css">
+
 
    <header class="header" data-header>
         <div class="container">
@@ -36,6 +37,9 @@ link rel="stylesheet" href="css/dashboard.css">
                 </button>
                 <a href="#"><img src="images/8324223_ui_essential_app_avatar_profile_icon.png" class="nav-avatar"
                         width="30" alt=""></a>
+                <% if(user.role == "admin") {%>
+                    <a href="/home/admin">Admin</a>
+                    <%} %>
             </div>
         </div>
     </header>
@@ -67,7 +71,7 @@ link rel="stylesheet" href="css/dashboard.css">
                     <img src="images/211635_card_icon.png" class="img-link" alt="">
                 </div>
                 <div class="board-text">
-                    <h1>Withdrawl</h1>
+                    <h1>Withdrawal</h1>
                     <span>0$</span>
                 </div>
             </div>
@@ -85,4 +89,3 @@ link rel="stylesheet" href="css/dashboard.css">
     </main>
 </body>
 
-<script src="js/dashboard.js"></script>
