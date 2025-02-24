@@ -37,7 +37,6 @@ const register = async (req, res) => {
     // error.details.map((el) => {
     //     console.log(el)
     // })
-
     const { username, password, email, fname, lname } = req.body;
     const user = await User.findOne({ username })
     if (user) {
