@@ -30,7 +30,7 @@ const renderLoginForm = (req, res) => {
     res.status(200).render("login")
 }
 const renderRegisterForm = (req, res) => {
-    res.status(200).render("register")
+    res.status(200).render("Register")
 }
 const register = async (req, res) => {
     // const { error } = Userschema.validate(req.body)
